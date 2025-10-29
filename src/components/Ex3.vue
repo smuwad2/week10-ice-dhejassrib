@@ -11,6 +11,13 @@
                 posts: [] // array of post objects
             }  
         },
+        // data() {
+        //     return {
+        //         posts: [
+        //             { id: 1, subject: 'Test', entry: 'Hello', mood: 'Happy' }
+        //         ]
+        //     }
+        // },
         components: {
             blogPost
         },
@@ -35,6 +42,15 @@
                 this.posts = [{ entry: 'There was an error: ' + error.message }]
             })
         },
+        // async mounted() {
+        //     try {
+        //         const response = await axios.get(`${this.baseUrl}/posts`);
+        //         this.posts = response.data;
+        //         console.log(response.data);
+        //     } catch (error) {
+        //         this.posts = [{ entry: 'There was an error: ' + error.message }];
+        //     }
+        // },
         methods: {
             deletePost(id) {
                 // TODO: Complete the delete method

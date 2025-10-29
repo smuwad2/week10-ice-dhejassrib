@@ -13,9 +13,11 @@
         },
         methods: {
             add() {
-                this.taskList.push( { 'desc': this.desc, 'deadline': this.deadline } )
-                this.desc = '',
+                if (this.desc && this.deadline) {
+                this.taskList.push({ desc: this.desc, deadline: this.deadline })
+                this.desc = ''          // ✅ clear input after adding
                 this.deadline = ''
+                }
             },
             // TODO: Add a new method, to delete a task completed
             deleteTask(idx) {
@@ -40,8 +42,8 @@
     <hr>
 
     <!-- TODO: Modify following code -->
-    <task-tracker v-for="(task,idx) in tasklist" 
-    :tasks="task" :idx="idx" :key="idx" @remove-task="deleteTask">
+    <task-tracker v-for="(task, idx) in taskList" 
+    :task="task" :idx="idx" :key="idx" @remove-task="deleteTask">
     </task-tracker>
 
 </template>

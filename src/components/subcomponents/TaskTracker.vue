@@ -8,12 +8,10 @@
         },
         // Hint: insert properties task (Object) and idx (Number)
         props: {
-            tasks: Object,
+            task: Object,
             idx: Number
         },
-        emits: [
-            "removeTasks"
-        ],
+        emits: ['remove-task'],
         methods: {
             done(index) {
                 // Emit event to parent to remove task at given index
@@ -31,7 +29,7 @@
         <div>
           <h5 class="card-title">Deadline: {{ task.deadline }}</h5>
           <hr>
-          <p class="card-text">Description: {{ task.desc }}</p>
+          <p class="card-text">{{ task.desc }}</p>
         </div>
         <button class="btn btn-success" @click="$emit('removeTask', idx)">Done</button>
       </div>
