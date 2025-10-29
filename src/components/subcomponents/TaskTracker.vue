@@ -12,8 +12,8 @@
             idx: Number
         },
         emits: [
-            "removeTaks"
-        ]
+            "removeTasks"
+        ],
         methods: {
             done(index) {
                 // Emit event to parent to remove task at given index

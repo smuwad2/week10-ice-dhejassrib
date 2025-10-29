@@ -10,11 +10,11 @@
         },
         components: {
             TaskTracker
-        }
+        },
         methods: {
             add() {
                 this.taskList.push( { 'desc': this.desc, 'deadline': this.deadline } )
-                this.desc = ''
+                this.desc = '',
                 this.deadline = ''
             },
             // TODO: Add a new method, to delete a task completed
