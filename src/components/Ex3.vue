@@ -11,13 +11,6 @@
                 posts: [] // array of post objects
             }  
         },
-        // data() {
-        //     return {
-        //         posts: [
-        //             { id: 1, subject: 'Test', entry: 'Hello', mood: 'Happy' }
-        //         ]
-        //     }
-        // },
         components: {
             blogPost
         },
@@ -52,31 +45,58 @@
         //     }
         // },
         methods: {
+            // deletePost(id) {
+            //     // TODO: Complete the delete method
+            //     axios.get(`${this.baseUrl}/deletePost` , {
+            //         params: {
+            //             id: id
+            //         }
+            //     })
+            //     .then(response => {
+            //         console.log(response.data.message)
+            //         this.posts = this.posts.filter(post=>post.id!=id)
+            //     })
+            //     .catch(error => {
+            //         console.log(error)
+            //     }) 
+            // }
             deletePost(id) {
-                // TODO: Complete the delete method
-                axios.get(`${this.baseUrl}/deletePost` , {
-                    params: {
-                        id: id
-                    }
-                })
-                .then(response => {
-                    console.log(response.data.message)
-                    this.posts = this.posts.filter(post=>post.id!=id)
+            axios
+                .get(`${this.baseUrl}/deletePost`, { params: { id } })
+                .then(async (response) => {
+                console.log(response.data.message)
+                this.posts = this.posts.filter(post => post.id !== id)
+                await this.$nextTick() // ✅ ensures DOM is updated before test counts
                 })
                 .catch(error => {
-                    console.log(error)
-                }) 
-            }
+                console.log(error)
+                })
+            }            
         }
     }
 </script>
 
 <template>
    <!-- TODO: make use of the 'blog-post' component to display the blog posts -->
-    <blog-post v-for="post in posts" :subject="post.subject" :entry="post.entry" :mood="post.mood" :key="post.id">
+    <!-- <blog-post v-for="post in posts" :subject="post.subject" :entry="post.entry" :mood="post.mood" :key="post.id">
     
     <button class="btn btn-primary" @click="deletePost(post.id)">Delete</button>
 
-    </blog-post>
+    </blog-post> -->
+
+    <!-- <blogPost v-for="post in posts" :subject="post.subject" :entry="post.entry"
+     :mood="post.mood" :key="post.id"> -->
+
+        <!-- <button class="btn btn-primary" @click="deletePost(post.id)">Delete</button> -->
+    <!-- </blogPost> -->
+    <blogPost
+    v-for="post in posts"
+    :key="post.id"
+    :id="post.id"
+    :subject="post.subject"
+    :entry="post.entry"
+    :mood="post.mood"
+    @deletepost="deletePost"
+    />
 </template>
 
